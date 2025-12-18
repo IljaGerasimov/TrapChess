@@ -13,8 +13,8 @@ const MAX_CLIENTS = 2
 # Called only once when objects scene loads
 func _ready():
 	#if Lobby sends a signal execute functions _on_...
-	lobby.host_game.connect(_on_host_game)
-	lobby.join_game.connect(_on_join_game)
+	lobby.host_game_pressed.connect(_on_host_game)
+	lobby.join_game_pressed.connect(_on_join_game)
 
 # --- HOST LOGIC----------------------------------------------
 

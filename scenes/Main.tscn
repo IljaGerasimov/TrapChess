@@ -3,14 +3,7 @@
 [ext_resource type="Script" uid="uid://clquronjb1vi6" path="res://scenes/main.gd" id="1_rvslj"]
 [ext_resource type="PackedScene" uid="uid://dvfs0kk4le1lh" path="res://scenes/Lobby.tscn" id="2_0bbpv"]
 
-[node name="Main" type="Control"]
-layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
+[node name="Main" type="Node"]
 script = ExtResource("1_rvslj")
 
 [node name="Lobby" parent="." instance=ExtResource("2_0bbpv")]
-layout_mode = 0
