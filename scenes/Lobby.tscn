@@ -1,3 +1,16 @@
 [gd_scene format=3 uid="uid://dvfs0kk4le1lh"]
 
-[node name="Lobby" type="Node2D"]
+[node name="Lobby" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="CenterContainer/VBoxContainer"]
+layout_mode = 2
