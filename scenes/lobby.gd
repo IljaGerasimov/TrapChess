@@ -9,7 +9,7 @@ signal join_game_pressed(address_text, name_text)
 
 # ---VARIABLES----------------------------------------------
 
-# @onready only initialises if the node finished loading
+# @onready only initializes if the node finished loading
 # (var: void *) variable that points to an object in this case
 # $: find this child in the scene-tree, must be same path as in scene dock
 @onready var Address_Input = $CenterContainer/VBoxContainer/AddressInput
@@ -19,6 +19,7 @@ signal join_game_pressed(address_text, name_text)
 
 # func: like a void function
 # _on_...: signaled functions via Node-Dock
+# host function
 func _on_host_button_pressed():
 	if Name_Input.text == "":
 		Name_Input.text = "HostPlayer"
@@ -26,6 +27,7 @@ func _on_host_button_pressed():
 	# emit_signal: calls all functions that wait for this signal
 	host_game_pressed.emit(Name_Input.text)
 
+# join function
 func _on_join_button_pressed():
 	if Name_Input.text == "":
 		Name_Input.text = "GuestPlayer"
