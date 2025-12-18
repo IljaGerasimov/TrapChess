@@ -1,8 +1,11 @@
-[gd_scene format=3 uid="uid://dvfs0kk4le1lh"]
+[gd_scene load_steps=2 format=3 uid="uid://dvfs0kk4le1lh"]
+
+[ext_resource type="Script" uid="uid://byeifhvbi6ptq" path="res://scenes/lobby.gd" id="1_6jt0u"]
 
 [node name="Lobby" type="Control"]
 layout_mode = 3
 anchors_preset = 0
+script = ExtResource("1_6jt0u")
 
 [node name="CenterContainer" type="CenterContainer" parent="."]
 layout_mode = 0
@@ -12,5 +15,29 @@ offset_bottom = 40.0
 [node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer"]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="CenterContainer/VBoxContainer"]
+[node name="TitleLabel" type="Label" parent="CenterContainer/VBoxContainer"]
 layout_mode = 2
+text = "TRAP CHESS"
+
+[node name="AddressInput" type="LineEdit" parent="CenterContainer/VBoxContainer"]
+layout_mode = 2
+placeholder_text = "IP-Adress"
+
+[node name="JoinButton" type="Button" parent="CenterContainer/VBoxContainer"]
+layout_mode = 2
+text = "Join"
+
+[node name="NameInput" type="LineEdit" parent="CenterContainer/VBoxContainer"]
+layout_mode = 2
+placeholder_text = "Your name"
+
+[node name="HostButton" type="Button" parent="CenterContainer/VBoxContainer"]
+layout_mode = 2
+text = "Host Game"
+
+[node name="SteamFriendinvitePlaceholder" type="Button" parent="CenterContainer/VBoxContainer"]
+layout_mode = 2
+text = "Invite"
+
+[connection signal="pressed" from="CenterContainer/VBoxContainer/JoinButton" to="." method="_on_join_button_pressed"]
+[connection signal="pressed" from="CenterContainer/VBoxContainer/HostButton" to="." method="_on_host_button_pressed"]
