@@ -1,5 +1,7 @@
 extends Node
 
+# [Do you see the beauty of our world?]
+
 # const: like #define or const int in c
 const PORT = 7000
 const MAX_CLIENTS = 2
@@ -30,7 +32,7 @@ func _on_host_game(player_name):
 	
 	# global Network pointer
 	multiplayer.multiplayer_peer = peer
-	print("Server established by " + player_name + "! Waiting for friend ...")
+	print("Server established by: " + player_name + "! Waiting for friend ...")
 	
 	# Wait for client response (register callback)
 	# if connection succeeds -> call func (_on_player_connected)
@@ -52,9 +54,31 @@ func _on_join_game(address, player_name):
 		return
 
 	multiplayer.multiplayer_peer = peer
-	print("Connecting" + player_name + "to server ...")
+	print("Connecting " + player_name + " to server ...")
 
 # ---CALLBACKS----------------------------------------------
+
 func _on_player_connected(id):
 	# id: unique player integer
-	print("New player connected: " + str(id))
+	print("New player connected by id: " + str(id))
+	if multiplayer.is_server():
+		# Wait till client is ready, then start
+		await get_tree().create_timer(1.0).timeout
+		start_editor.rpc()
+
+# ---LEVEL LOADER----------------------------------------------
+
+# this function throws out the Lobby and loads the level
+# @rpc("call_local"): makes the function load on both pc's simultaniously
+@rpc("call_local")
+func start_editor():
+	print("Authesys: initiate Editor!")
+
+	# 1. Lobby gets marked for death
+	if has_node("Lobby"):
+		$Lobby.queue_free()
+	
+	# 2. Editor-Scene loading
+	var editor_scene = load("res://scenes/Editor.tscn")
+	var editor_instance = editor_scene.instantiate()
+	add_child(editor_instance)

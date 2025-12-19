@@ -34,5 +34,3 @@ func _on_join_button_pressed():
 
 	# pass two arguments (IP and Name)
 	join_game_pressed.emit(Address_Input.text, Name_Input.text)
-
-# Do you see the beauty of our World? ...
