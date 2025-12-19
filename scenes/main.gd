@@ -79,6 +79,6 @@ func start_editor():
 		$Lobby.queue_free()
 	
 	# 2. Editor-Scene loading
-	var editor_scene = load("res://scenes/Editor.tscn")
+	var editor_scene = load("res://scenes/levels/LevelPawn.tscn")
 	var editor_instance = editor_scene.instantiate()
 	add_child(editor_instance)
