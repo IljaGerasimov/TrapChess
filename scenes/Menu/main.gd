@@ -72,7 +72,7 @@ func _on_player_connected(id):
 # @rpc("call_local"): makes the function load on both pc's simultaniously
 @rpc("call_local")
 func start_editor():
-	print("Authesys: initiate Editor!")
+	print("Authesys: initiate Editor ...")
 
 	# 1. Lobby gets marked for death
 	if has_node("Lobby"):

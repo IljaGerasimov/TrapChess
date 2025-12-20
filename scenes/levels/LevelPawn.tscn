@@ -1,8 +1,20 @@
-[gd_scene format=3 uid="uid://bomlotyjhtra2"]
+[gd_scene load_steps=3 format=3 uid="uid://bomlotyjhtra2"]
+
+[ext_resource type="Script" uid="uid://t8nunem3she5" path="res://scenes/levels/level_pawn.gd" id="1_67rga"]
+[ext_resource type="Texture2D" uid="uid://dibu3iooxfcur" path="res://sprites/checkerboard_tile.png" id="2_4nkvv"]
 
 [node name="LevelPawn" type="Node2D"]
+script = ExtResource("1_67rga")
 
 [node name="PlacementPreview" type="ColorRect" parent="."]
-custom_minimum_size = Vector2(64, 64)
+custom_minimum_size = Vector2(128, 128)
 offset_right = 40.0
 offset_bottom = 40.0
+
+[node name="TileMapLayer" type="TileMapLayer" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_repeat = 2
+texture = ExtResource("2_4nkvv")
+region_enabled = true
+region_rect = Rect2(2304, 1152, 0, 0)

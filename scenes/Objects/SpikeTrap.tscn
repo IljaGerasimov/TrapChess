@@ -2,4 +2,4 @@
 
 [node name="SpikeTrap" type="Area2D"]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="CollisionShape2D" type="CollisionPolygon2D" parent="."]

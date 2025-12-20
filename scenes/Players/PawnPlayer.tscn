@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3 uid="uid://d4e7xux1kvcf"]
+
+[ext_resource type="Texture2D" uid="uid://dl65x18w44gbd" path="res://sprites/PawnTorso.png" id="1_ehqrv"]
+[ext_resource type="Texture2D" uid="uid://2u6wckmmyya5" path="res://sprites/Pawnhead.png" id="2_pqvae"]
+
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_o75gv"]
+
+[node name="PawnPlayer" type="CharacterBody2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_ehqrv")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
+replication_config = SubResource("SceneReplicationConfig_o75gv")
+
+[node name="Sprite2D2" type="Sprite2D" parent="."]
+position = Vector2(0, -128)
+texture = ExtResource("2_pqvae")
