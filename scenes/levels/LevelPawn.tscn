@@ -16,5 +16,8 @@ offset_bottom = 40.0
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture_repeat = 2
 texture = ExtResource("2_4nkvv")
+centered = false
 region_enabled = true
-region_rect = Rect2(2304, 1152, 0, 0)
+region_rect = Rect2(0, 0, 2304, 1152)
+
+[node name="Sprite2D2" type="Sprite2D" parent="."]
