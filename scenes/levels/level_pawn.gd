@@ -1,6 +1,6 @@
 extends Node2D
 
-# the holy proportions
+# The holy proportions
 const GRID_WIDTH = 18
 const GRID_HEIGHT = 9
 const TILE_SIZE = 128
@@ -10,11 +10,14 @@ enum Tool { NONE, BLOCK, SPIKE, SPAWN, FINISH }
 var current_tool = Tool.BLOCK
 
 # LOAD ASSETS
-var tex_block = preload("res://sprites/PlatformClosed.png")
+var tex_platformclosed = preload("res://sprites/PlatformClosed.png")
 var tex_spike = preload("res://sprites/TrapOpen.png")
 var tex_spawn = preload("res://sprites/Spawn_tile.png")
 var tex_finish = preload("res://sprites/Spawnandfinish_tile.png")
 
+# Scenes to load
+var scene_spike = preload("res://scenes/Objects/SpikeTrap.tscn")
+# var scene_platformclosed = preload("res://scenes/Objects/PlatformClosed.tscn")
 @onready var preview = $PlacementPreview
 
 func _ready():
