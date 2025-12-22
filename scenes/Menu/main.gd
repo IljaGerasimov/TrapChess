@@ -82,3 +82,9 @@ func start_editor():
 	var editor_scene = load("res://scenes/levels/LevelPawn.tscn")
 	var editor_instance = editor_scene.instantiate()
 	add_child(editor_instance)
+
+# ---PANIC BUTTON--------------------------------------------------------
+
+func _input(event):
+	if event.is_action_pressed("ui_cancel"): # Esc Key
+		get_tree().quit()

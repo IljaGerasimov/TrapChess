@@ -6,49 +6,70 @@ const GRID_HEIGHT = 9
 const TILE_SIZE = 128
 
 # The big leagues
-enum Tool { NONE, BLOCK, SPIKE, SPAWN, FINISH }
-var current_tool = Tool.BLOCK
+enum Tool { NONE, PLATFORM, SPIKE, SPAWN, FINISH, FOUNDATION }
+var current_tool = Tool.PLATFORM
+var current_map_data = {} #: Key Vector2i(x,y)
 
 # LOAD ASSETS
-var tex_platformclosed = preload("res://sprites/PlatformClosed.png")
+var tex_platform = preload("res://sprites/PlatformClosed.png")
 var tex_spike = preload("res://sprites/TrapOpen.png")
-var tex_spawn = preload("res://sprites/Spawn_tile.png")
-var tex_finish = preload("res://sprites/Spawnandfinish_tile.png")
+var tex_spawn_top = preload("res://sprites/Spawn_tile.png")
+var tex_foundation = preload("res://sprites/foundation_tile.png")
+var tex_finish_top = preload("res://sprites/Finish_tile.png")
 
-# Scenes to load
-var scene_spike = preload("res://scenes/Objects/SpikeTrap.tscn")
-# var scene_platformclosed = preload("res://scenes/Objects/PlatformClosed.tscn")
 @onready var preview = $PlacementPreview
 
+# ---FUNCTIONS-----------------------------------------------
+
 func _ready():
-	setup_camera()
-	# optionally drawss an empty grid for orientation
-	queue_redraw()
+	# Only the host/ server decides map layout (Authority)
+	if multiplayer.is_server():
+		generate_level_layout()
 
-func setup_camera():
-	var cam = Camera2D.new()
-	add_child(cam)
-	
-	# calculates the center of the grid
-	var center_x = (GRID_WIDTH * TILE_SIZE) / 2
-	var center_y = (GRID_HEIGHT * TILE_SIZE) / 2
-	cam.position = Vector2(center_x, center_y)
+func generate_level_layout():
+	# A random height for the Start (1, 4 and 7)
+	var rng = RandomNumberGenerator.new()
+	rng.randomize()
 
-	# calculates zoom, so that 2304px can fit into a 1920px screen
-	# 1920 / 2304 = ~0.83
-	var zoom_factor = 1920.0 / (GRID_WIDTH * TILE_SIZE)
-	cam.zoom = Vector2(zoom_factor, zoom_factor)
-	
+	# randomly chooses number between 2 and 6 for start and finish
+	var rand_start = rng.randi_range(2, 6)
+	var rand_finish = rng.randi_range(2, 6)
+
+	# Sends the randomized numbers over as arrays to the RPC
+	setup_map.rpc([rand_start], [rand_finish])
+
+@rpc("call_local", "reliable")
+func setup_map(starts, goals):
+	# Deletes previous instances on restart
+	# Build Start-Pillars (far left: row 0)
+	for y_pos in starts:
+		build_pillar(0, y_pos, tex_spawn_top)
+
+	for y_pos in goals:
+		build_pillar(GRID_WIDTH - 1, y_pos, tex_finish_top)
+
+func build_pillar(x, target_y, top_tex):
+	# builds from target_y till the ground (y = 8)
+	for y in range(target_y, GRID_HEIGHT):
+		var s = Sprite2D.new()
+		s.centered = false # Important for snapping
+		s.position = Vector2(x * TILE_SIZE, y * TILE_SIZE)
+
+		# The upper tile gets the orange/purple tile, the rest is foundattion
+		if y == target_y:
+			s.texture = top_tex
+		else:
+			s.texture = tex_foundation
+
+		add_child(s)
+		
 func _process(_delta):
 	# Softsnapping for the preview
 	# rounding mouse_pos to the nearest multiple of 128
 	var mouse_pos = get_global_mouse_position()
-	var snap_x = floor(mouse_pos.x / TILE_SIZE)
-	var snap_y = floor(mouse_pos.y / TILE_SIZE)
-	
-	# constraint to game area
-	snap_x = clamp(snap_x, 0, GRID_WIDTH - 1)
-	snap_y = clamp(snap_y, 0, GRID_HEIGHT - 1)
+	# clamp: constraints to the game area
+	var snap_x = clamp(floor(mouse_pos.x / TILE_SIZE), 0, GRID_WIDTH - 1)
+	var snap_y = clamp(floor(mouse_pos.y / TILE_SIZE), 0, GRID_HEIGHT - 1)
 	
 	# preview jumps from tile to tile
 	preview.global_position = Vector2(snap_x * TILE_SIZE, snap_y * TILE_SIZE)

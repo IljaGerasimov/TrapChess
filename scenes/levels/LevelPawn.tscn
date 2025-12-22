@@ -7,17 +7,24 @@
 script = ExtResource("1_67rga")
 
 [node name="PlacementPreview" type="ColorRect" parent="."]
+modulate = Color(0.84000003, 1, 0.9066667, 0.5019608)
 custom_minimum_size = Vector2(128, 128)
-offset_right = 40.0
-offset_bottom = 40.0
+offset_right = 128.0
+offset_bottom = 128.0
 
-[node name="TileMapLayer" type="TileMapLayer" parent="."]
-
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="Background" type="Sprite2D" parent="."]
 texture_repeat = 2
 texture = ExtResource("2_4nkvv")
 centered = false
 region_enabled = true
 region_rect = Rect2(0, 0, 2304, 1152)
 
-[node name="Sprite2D2" type="Sprite2D" parent="."]
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Ready Button" type="Button" parent="CanvasLayer"]
+offset_right = 8.0
+offset_bottom = 8.0
+text = "Ready"
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(1152, 576)
