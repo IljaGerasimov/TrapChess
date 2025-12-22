@@ -1,6 +1,6 @@
 extends Node2D
 
-# The holy proportions
+# The proportions
 const GRID_WIDTH = 18
 const GRID_HEIGHT = 9
 const TILE_SIZE = 128
@@ -43,8 +43,8 @@ func _process(_delta):
 	# Softsnapping for the preview
 	# rounding mouse_pos to the nearest multiple of 128
 	var mouse_pos = get_global_mouse_position()
-	var snap_x = floor(mouse_pos.x / TILE_SIZE) # * 128
-	var snap_y = floor(mouse_pos.y / TILE_SIZE) # * 128
+	var snap_x = floor(mouse_pos.x / TILE_SIZE)
+	var snap_y = floor(mouse_pos.y / TILE_SIZE)
 	
 	# constraint to game area
 	snap_x = clamp(snap_x, 0, GRID_WIDTH - 1)
