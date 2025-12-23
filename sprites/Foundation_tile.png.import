@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b2ue6dqvoajaw"
-path="res://.godot/imported/foundation_tile.png-4d75e8f874472849458093ee6150a6b3.ctex"
+uid="uid://jdl3debymawq"
+path="res://.godot/imported/Foundation_tile.png-90983d576271721a57afa95947820f27.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprites/foundation_tile.png"
-dest_files=["res://.godot/imported/foundation_tile.png-4d75e8f874472849458093ee6150a6b3.ctex"]
+source_file="res://sprites/Foundation_tile.png"
+dest_files=["res://.godot/imported/Foundation_tile.png-90983d576271721a57afa95947820f27.ctex"]
 
 [params]
 

@@ -1,20 +1,20 @@
 extends Node2D
 
-# The proportions
+# 1. The proportions
 const GRID_WIDTH = 18
 const GRID_HEIGHT = 9
 const TILE_SIZE = 128
 
-# The big leagues
+# 2. The big leagues
 enum Tool { NONE, PLATFORM, SPIKE, SPAWN, FINISH, FOUNDATION }
 var current_tool = Tool.PLATFORM
-var current_map_data = {} #: Key Vector2i(x,y)
+var current_map_data = {} #: Key Vector2i(67x,y)
 
-# LOAD ASSETS
+# 3. LOAD ASSETS
 var tex_platform = preload("res://sprites/PlatformClosed.png")
 var tex_spike = preload("res://sprites/TrapOpen.png")
 var tex_spawn_top = preload("res://sprites/Spawn_tile.png")
-var tex_foundation = preload("res://sprites/foundation_tile.png")
+var tex_foundation = preload("res://sprites/Foundation_tile.png")
 var tex_finish_top = preload("res://sprites/Finish_tile.png")
 
 @onready var preview = $PlacementPreview
