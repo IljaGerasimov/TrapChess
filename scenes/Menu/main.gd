@@ -1,6 +1,6 @@
 extends Node
 
-# [Do you see the beauty of our world?]
+# [Do you see beauty?]
 
 # const: like #define or const int in c
 const PORT = 7000
