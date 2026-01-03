@@ -7,8 +7,8 @@ const TILE_SIZE = 128
 
 # 2. The big leagues
 enum Tool { NONE, PLATFORM, SPIKE, SPAWN, FINISH, FOUNDATION }
-var current_tool = Tool.PLATFORM
-var current_map_data = {} #: Key Vector2i(67x,y)
+var current_tool = Tool.PLATFORM # or Tool.SPIKE
+var current_map_data = {} #{}: Array, Key: [Vector2i(x,y)] = Tool.SPIKE e.g.
 
 # 3. LOAD ASSETS
 var tex_platform = preload("res://sprites/PlatformClosed.png")
