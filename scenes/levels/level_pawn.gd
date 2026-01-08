@@ -2,7 +2,7 @@ extends Node2D
 
 # 1. The proportions
 const GRID_WIDTH = 18
-const GRID_HEIGHT = 9
+const GRID_HEIGHT = 10
 const TILE_SIZE = 128
 
 # 2. The big leagues
@@ -27,13 +27,12 @@ func _ready():
 		generate_level_layout()
 
 func generate_level_layout():
-	# A random height for the Start (1, 4 and 7)
 	var rng = RandomNumberGenerator.new()
 	rng.randomize()
 
-	# randomly chooses number between 2 and 6 for start and finish
-	var rand_start = rng.randi_range(2, 6)
-	var rand_finish = rng.randi_range(2, 6)
+	# randomly chooses number between 4 and 9 for start and finish
+	var rand_start = rng.randi_range(4, 9)
+	var rand_finish = rng.randi_range(4, 9)
 
 	# Sends the randomized numbers over as arrays to the RPC
 	setup_map.rpc([rand_start], [rand_finish])

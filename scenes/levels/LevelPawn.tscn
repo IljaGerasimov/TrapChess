@@ -17,7 +17,7 @@ texture_repeat = 2
 texture = ExtResource("2_4nkvv")
 centered = false
 region_enabled = true
-region_rect = Rect2(0, 0, 2304, 1152)
+region_rect = Rect2(0, 0, 2304, 1280)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
@@ -27,4 +27,4 @@ offset_bottom = 8.0
 text = "Ready"
 
 [node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2(1152, 576)
+position = Vector2(1152, 640)
