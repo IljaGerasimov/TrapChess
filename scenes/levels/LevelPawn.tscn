@@ -1,7 +1,9 @@
-[gd_scene load_steps=3 format=3 uid="uid://bomlotyjhtra2"]
+[gd_scene load_steps=5 format=3 uid="uid://bomlotyjhtra2"]
 
 [ext_resource type="Script" uid="uid://t8nunem3she5" path="res://scenes/levels/level_pawn.gd" id="1_67rga"]
 [ext_resource type="Texture2D" uid="uid://dibu3iooxfcur" path="res://sprites/checkerboard_tile.png" id="2_4nkvv"]
+[ext_resource type="Texture2D" uid="uid://dj2d83h5f7658" path="res://sprites/PawnTorso.png" id="3_pkd7v"]
+[ext_resource type="Texture2D" uid="uid://be7mkr8uwyx4e" path="res://sprites/PawnHead.png" id="4_o18ad"]
 
 [node name="LevelPawn" type="Node2D"]
 script = ExtResource("1_67rga")
@@ -28,3 +30,13 @@ text = "Ready"
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(1152, 640)
+
+[node name="PawnTorso" type="Sprite2D" parent="."]
+position = Vector2(780, 744.49994)
+scale = Vector2(0.626506, 0.7266573)
+texture = ExtResource("3_pkd7v")
+
+[node name="PawnHead" type="Sprite2D" parent="."]
+position = Vector2(780, 648.5)
+scale = Vector2(0.79268295, 0.79268295)
+texture = ExtResource("4_o18ad")

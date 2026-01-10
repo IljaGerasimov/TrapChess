@@ -1,16 +1,19 @@
 extends Node2D
 
-# 1. The proportions
+# ---1. MAP PROPORTIONS-----------------------------
+
 const GRID_WIDTH = 18
 const GRID_HEIGHT = 10
 const TILE_SIZE = 128
 
-# 2. The big leagues
+# ---2. LEVEL DICTIONARY-----------------------------------------
+
 enum Tool { NONE, PLATFORM, SPIKE, SPAWN, FINISH, FOUNDATION }
 var current_tool = Tool.PLATFORM # or Tool.SPIKE
 var current_map_data = {} #{}: Array, Key: [Vector2i(x,y)] = Tool.SPIKE e.g.
 
-# 3. LOAD ASSETS
+# ---3. LOAD ASSETS ---------------------------------------------
+
 var tex_platform = preload("res://sprites/PlatformClosed.png")
 var tex_spike = preload("res://sprites/TrapOpen.png")
 var tex_spawn_top = preload("res://sprites/Spawn_tile.png")
@@ -19,7 +22,7 @@ var tex_finish_top = preload("res://sprites/Finish_tile.png")
 
 @onready var preview = $PlacementPreview
 
-# ---FUNCTIONS-----------------------------------------------
+# ---MAP GENERATION-----------------------------------------------
 
 func _ready():
 	# Only the host/ server decides map layout (Authority)
@@ -36,7 +39,7 @@ func generate_level_layout():
 
 	# Sends the randomized numbers over as arrays to the RPC
 	setup_map.rpc([rand_start], [rand_finish])
-
+	
 @rpc("call_local", "reliable")
 func setup_map(starts, goals):
 	# Deletes previous instances on restart
@@ -61,7 +64,9 @@ func build_pillar(x, target_y, top_tex):
 			s.texture = tex_foundation
 
 		add_child(s)
-		
+
+# ---RUNTIME--------------------------------------------------------
+
 func _process(_delta):
 	# Softsnapping for the preview
 	# rounding mouse_pos to the nearest multiple of 128
